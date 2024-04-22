@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+    <div>
+        <a class="btn btn-success" href="{{ path("create_category") }}">create category</a>
+    </div>
+    {% for category in categories %}
+    <div class="form-control">
+        <span>{{ category.name }}</span>
+    </div>
+    {% endfor %}
+
+{% endblock %}

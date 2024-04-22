@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+
+    {{ form_start(formCategory) }}
+    {{ form_row(formCategory.name) }}
+    <button class="btn btn-success" type="submit">create</button>
+    {{ form_end(formCategory) }}
+
+{% endblock %}
