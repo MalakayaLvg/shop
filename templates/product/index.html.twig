@@ -3,18 +3,53 @@
 {% block title %}Hello ProductController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{#    <a class="btn btn-primary" href="{{ path("app_product_show") }}">show</a>#}
+   <a class="btn btn-primary my-3" href="{{ path("app_product_create") }}">create</a>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/oslynx/Documents/Symfony Project/shop/src/Controller/ProductController.php</code></li>
-        <li>Your template at <code>/home/oslynx/Documents/Symfony Project/shop/templates/product/index.html.twig</code></li>
-    </ul>
-</div>
+   <h2 class="py-4">All products</h2>
+
+   <table class="table my-2">
+      <thead>
+      <tr>
+         <th scope="col">Name</th>
+         <th scope="col">Description</th>
+         <th scope="col">Price</th>
+         <th scope="col">Date</th>
+         <th scope="col">Images</th>
+         <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for product in products %}
+      <tr>
+         <td>{{ product.name }}</td>
+         <td>{{ product.description }}</td>
+         <td>{{ product.price }} €</td>
+         <td>{{ product.createdAt | date("d/m/Y")}}</td>
+         <td>
+            <div class="d-flex">
+               {% for image in product.images %}
+                  <div class="card">
+                     <div class="d-flex justify-content-end">
+                        <a class="btn-close" href="{{ path("app_product_image_delete",{id:image.id}) }}"></a>
+                     </div>
+                     <img class="mx-1" src="{{ vich_uploader_asset(image) }}" width="60px">
+                  </div>
+               {% endfor %}
+            </div>
+         </td>
+         <td>
+            <div class="d-flex flex-column">
+               <a class="btn btn-primary" href="{{ path('app_product_show',{id:product.id}) }}">Show</a>
+            </div>
+         </td>
+
+
+      </tr>
+
+      {% endfor %}
+      </tbody>
+   </table>
+
 {% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+    <div class="form-control">
+        <h3>{{ product.name }}</h3>
+        <h5>{{ product.description }}</h5>
+        <h5>{{ product.price }} €</h5>
+        <h6>{{ product.createdAt | date("m/d/Y") }}</h6>
+        <div>
+            <a class="btn btn-primary" href="{{ path("app_product") }}">All products</a>
+            <a class="btn btn-warning" href="{{ path("app_product_edit",{id:product.id}) }}">Edit</a>
+            <a class="btn btn-danger" href="{{ path("app_product_delete",{id:product.id}) }}">Delete</a>
+        </div>
+    </div>
+
+    <div class="form-control">
+        <h2>Add Image</h2>
+        {{ form_start(form,{attr: {action:path("app_product_show",{id:product.id})}}) }}
+        {{ form_row(form.imageFile) }}
+        <button type="submit" class="btn btn-primary">add</button>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
