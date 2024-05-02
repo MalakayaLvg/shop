@@ -17,12 +17,14 @@
 
         </thead>
         <tbody>
+        {% set totalPrice = 0 %}
         {% for item in cart %}
         <tr>
             <td>{{ item.product.name }}</td>
             <td>{{ item.product.price }}€</td>
             <td>{{ item.quantity }}</td>
-            <td>{{ item.product.price * item.quantity}} €</td>
+            <td>{{ item.product.price * item.quantity }} €</td>
+            {% set totalPrice = totalPrice + item.product.price * item.quantity %}
             <td>
                 <div>
                     <a class="btn btn-warning" href="{{ path('app_cart_remove_one',{id:item.product.id,quantity:1}) }}">-</a>
@@ -35,8 +37,9 @@
         </tbody>
         <tfoot>
         <tr class="table-info">
-            <th scope="row">Total :</th>
-            <td><a class="btn btn-danger" href="">vider le panier</a></td>
+            <th>Total :</th>
+            <td>{{ total }} €</td>
+            <td><a class="btn btn-danger" href="{{ path('app_cart_emptycart') }}">vider le panier</a></td>
             <td><a class="btn btn-primary" href="">make order</a></td>
         </tr>
         </tfoot>

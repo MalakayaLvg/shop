@@ -7,8 +7,12 @@
         <a class="btn btn-success" href="{{ path("create_category") }}">create category</a>
     </div>
     {% for category in categories %}
-    <div class="form-control">
+    <div class="form-control d-flex justify-content-between">
         <span>{{ category.name }}</span>
+        <div>
+            <a href="{{ path('delete_category', {'id': category.id}) }}" class="btn btn-danger ms-2">Supprimer</a>
+            <a href="{{ path('edit_category', {'id': category.id}) }}" class="btn btn-warning ms-2">Editer</a>
+        </div>
     </div>
     {% endfor %}
 

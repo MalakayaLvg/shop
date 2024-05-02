@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+    <h3>Hello <strong>{{ app.user.username }}</strong></h3>
+
+    <div class="form-control">
+        <div class="row">
+            {% for paymentMethod in app.user.paymentMethods %}
+                <div class="col-3 card m-2 p-2">
+                    <h6>Card : {{ paymentMethod.cardNumber }}</h6>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="my-2">
+            <h3>Entrer une nouvelle methode de paiement</h3>
+            {{ form(formPayment) }}
+        </div>
+    </div>
+
+    <div class="form-control">
+        <div class="row">
+            {% for adress in app.user.adresses %}
+                <div class="col-3 card m-2 p-2">
+                    <h6>Numero de rue:  {{ adress.streetNumber }}</h6>
+                    <h6>Rue:  {{ adress.street }}</h6>
+                    <h6>Code postale:  {{ adress.zipcode }}</h6>
+                    <h6>Ville:  {{ adress.city }}</h6>
+                    <h6>Pays:  {{ adress.country }}</h6>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="my-2">
+            <h3>Entrer une nouvelle adresse</h3>
+            {{ form(formAdress) }}
+        </div>
+    </div>
+
+{% endblock %}

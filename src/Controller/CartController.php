@@ -16,6 +16,7 @@ class CartController extends AbstractController
     {
         return $this->render('cart/index.html.twig', [
             'cart' => $cartService->getCart(),
+            'total' => $cartService->getTotal()
         ]);
     }
 
@@ -47,6 +48,13 @@ class CartController extends AbstractController
     {
         $cartService->removeOneRow($product);
 
+        return $this->redirectToRoute('app_cart');
+    }
+
+    #[Route('/cart/emptycart', name: 'app_cart_emptycart')]
+    public function emptyCart(CartService $cartService) :Response
+    {
+        $cartService->emptyCart();
         return $this->redirectToRoute('app_cart');
     }
 }

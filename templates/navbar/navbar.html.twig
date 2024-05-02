@@ -9,10 +9,11 @@
                 <a class="nav-link active" aria-current="page" href="{{ path("app_register") }}">Register</a>
                 <a class="nav-link active" aria-current="page" href="{{ path("app_login") }}">Login</a>
                 <a class="nav-link active" aria-current="page" href="{{ path("app_logout") }}">Logout</a>
+                <a class="nav-link active" aria-current="page" href="{{ path("app_profile") }}">Profile</a>
                 <a class="nav-link active" aria-current="page" href="{{ path("app_category") }}">Categories</a>
                 <a class="nav-link active" aria-current="page" href="{{ path("app_product") }}">Products Admin</a>
                 <a class="nav-link active" aria-current="page" href="{{ path("app_product_user") }}">Products User</a>
-                <a class="nav-link active" aria-current="page" href="{{ path("app_cart") }}">Cart(0)</a>
+                <a class="nav-link active" aria-current="page" href="{{ path('app_cart') }}">Cart({{ cart_global.cartCount() }})</a>
             </div>
         </div>
     </div>
