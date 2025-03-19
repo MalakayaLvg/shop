@@ -8,6 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+// USER
+// barthelemy , mp : barthelemy
+
 #[Route('/product')]
 class ProductUserController extends AbstractController
 {

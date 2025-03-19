@@ -6,6 +6,7 @@ use App\Entity\Adress;
 use App\Entity\PaymentMethod;
 use App\Form\AdressType;
 use App\Form\PaymentMethodType;
+use App\Repository\OrderRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +26,8 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/index.html.twig', [
             "formPayment" => $formPayment,
-            "formAdress" => $formAdress
+            "formAdress" => $formAdress,
+
         ]);
     }
 
@@ -62,4 +64,13 @@ class ProfileController extends AbstractController
         return $this->redirectToRoute('app_profile');
 
     }
+
+    #[Route('/profile/order/history', name: "app_profile_order_history")]
+    public function orderHistory():Response
+    {
+        return $this->render("profile/orderHistory.html.twig",[
+
+        ]);
+    }
+
 }

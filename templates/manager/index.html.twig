@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ManagerController!{% endblock %}
+
+{% block body %}
+
+    <h3 class="my-3">Gestion des commandes</h3>
+
+    {% for order in orders %}
+        <div class="form-control d-flex flex-column my-2">
+            <h6>id: {{ order.id }}</h6>
+            <h6>Nom du client: {{ order.customer.username }}</h6>
+            {% if order.status == 0 %}
+                <h6 class="text-primary">Status: en attente de paiement</h6>
+            {% elseif order.status == 1 %}
+                <h6 class="text-secondary">Status: Commande payée</h6>
+            {% elseif order.status == 2 %}
+                <h6 class="text-warning">Status: Commande expediée</h6>
+            {% elseif order.status == 3 %}
+                <h6 class="text-success">Status: Commande livrée</h6>
+            {% endif %}
+
+            <div>
+                <a href="{{ path("app_manager_change_status",{id:order.id,status:2}) }}" class="btn btn-warning">Commande expédiée</a>
+                <a href="{{ path("app_manager_change_status",{id:order.id,status:3}) }}" class="btn btn-success">Commande Livrée</a>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

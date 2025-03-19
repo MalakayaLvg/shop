@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Resume</title>
+</head>
+<body>
+<h3>Facture</h3>
+<div style="margin: 0 auto;display: block;width: 500px;">
+    <table width="100%" border="1">
+        {% for item in order.orderItems %}
+        <tr>
+            <td>Produit:</td>
+            <td>{{ item.product.name }}</td>
+        </tr>
+        <tr>
+            <td>Quantité:</td>
+            <td>{{ item.quantity }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td>Name:</td>
+            <td>{{order.customer.username}}</td>
+        </tr>
+        <tr>
+            <td><strong>Total:</strong></td>
+            <td>{{ order.total }}€</td>
+        </tr>
+        <tr>
+            <td><strong>Billing Address : </strong></td>
+            <td>
+                {{ order.billingAddress.streetNumber }} {{ order.billingAddress.street }}, {{ order.billingAddress.zipcode }} {{ order.billingAddress.city }}
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Delivery Address : </strong></td>
+            <td>
+                {{ order.deliveryAddress.streetNumber }} {{ order.deliveryAddress.street }}, {{ order.deliveryAddress.zipcode }} {{ order.deliveryAddress.city }}
+            </td>
+        </tr>
+
+    </table>
+</div>
+</body>
+</html>

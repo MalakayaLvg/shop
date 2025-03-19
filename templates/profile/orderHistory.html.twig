@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h4 class="my-4">Vos commandes</h4>
+{% for order in app.user.orders %}
+    <div class="form-control my-3">
+
+    <h6>id commande : {{ order.id }}</h6>
+    {% if order.status == 0 %}
+        <h6 class="text-warning">Status: En attente de paiement</h6>
+    {% elseif order.status == 1 %}
+        <h6 class="text-secondary">Status: Payée </h6>
+    {% elseif order.status == 2 %}
+        <h6 class="text-warning">Status: Expediée </h6>
+    {% elseif order.status == 3 %}
+        <h6 class="text-success">Status: Livrée </h6>
+    {% endif %}
+
+    {% for item in order.orderItems %}
+        <div class="d-flex flex-column">
+            <span>{{ item.product.name }}</span>
+            <span>Quantité: {{ item.quantity }}</span>
+            <span>{{ item.product.price }} €</span>
+        </div>
+    {% endfor %}
+    <h5>Total: {{ order.total }} €</h5>
+        <a href="{{ path('app_pdf_generator',{id:order.id}) }}" class="btn btn-primary">Exporter en pdf</a>
+    </div>
+{% endfor  %}
+{% endblock %}

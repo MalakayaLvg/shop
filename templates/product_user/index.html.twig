@@ -6,14 +6,37 @@
     <h2 class="mt-2 mb-3">Nos Produits</h2>
 
     {% for product in products %}
-    <div class="form-control my-2">
-        <h3>{{ product.name }}</h3>
-        <h5>{{ product.description }}</h5>
-        <h5>{{ product.price }} €</h5>
-        <h6>{{ product.createdAt | date("m/d/Y") }}</h6>
-        <div>
-            <a class="btn btn-primary" href="{{ path("app_product_user_show",{id:product.id}) }}">Voir</a>
-            <a class="btn btn-warning" href="{{ path('app_cart_index_add',{id:product.id,quantity:1}) }}">Ajouter au panier</a>
+    <div class="form-control my-2 d-flex">
+        <div class="">
+
+                <div id="carouselExample" class="carousel slide">
+                    <div class="carousel-inner">
+                        {% for image in product.images %}
+                        <div class="carousel-item active">
+                            <img src="{{ vich_uploader_asset(image) }}" class="d-block" alt="..." width="200px">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+        </div>
+        <div class="ps-3">
+            <h3>{{ product.name }}</h3>
+            <h5>{{ product.description }}</h5>
+            <h5>{{ product.price }} €</h5>
+            <h6>{{ product.createdAt | date("m/d/Y") }}</h6>
+            <div>
+                <a class="btn btn-primary" href="{{ path("app_product_user_show",{id:product.id}) }}">Voir</a>
+                <a class="btn btn-warning" href="{{ path('app_cart_index_add',{id:product.id,quantity:1}) }}">Ajouter au panier</a>
+            </div>
         </div>
     </div>
     {% endfor %}
